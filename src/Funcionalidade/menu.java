@@ -1,10 +1,7 @@
 package Funcionalidade;
-
-package Funcionalidade;
-
 import java.util.Scanner;
 
-public class Menu {
+public class menu {
 
     // Método para exibir o menu e receber a opção do usuário
     public static void ExibirMenu() {
@@ -34,6 +31,11 @@ public class Menu {
                     String textoEmAnalise = leia.nextLine();
                     System.out.println("\nTexto recebido com sucesso.");
                     System.out.println("Texto Recebido: " + textoEmAnalise);
+
+                    int resultado = analisar.analisarEmail(textoEmAnalise);
+
+                    System.out.println(resultado);
+
                     break;
 
                 case 2:
