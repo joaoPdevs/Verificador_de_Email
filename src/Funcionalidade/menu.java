@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class menu {
 
-    // Método para exibir o menu e receber a opção do usuário
+    // Metodo para exibir o menu e receber a opção do usuário
     public static void ExibirMenu() {
         Scanner leia = new Scanner(System.in);
         int opcao = -1;
