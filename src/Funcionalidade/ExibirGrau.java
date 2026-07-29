@@ -2,20 +2,20 @@ package Funcionalidade;
 
 public class ExibirGrau {
     public static String DefinirGrau(int score) {
-        grau = ""
+        String grau = "";
 
         if(score >= 0 && score <= 30) {
-            grau = "Provavelmente Legítima"
+            grau = "Provavelmente Legítima";
         }else {
-            return "ERRO: Score Inválido."
+            return "ERRO: Score Inválido.";
         }
         if(score > 30 && score < 100 ) {
-            grau = "Suspeita"
+            grau = "Suspeita";
         }
         if(score >= 100) {
-            grau = "Provavelmente é Golpe"
+            grau = "Provavelmente é Golpe";
         }
 
-        return grau
+        return grau;
     }
 }

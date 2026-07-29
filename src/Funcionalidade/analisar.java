@@ -1,6 +1,7 @@
 package Funcionalidade;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Analisar {
     public static int analisarEmail(String assunto){
@@ -50,12 +51,5 @@ public class Analisar {
 
         return score;
     }
-
-
-    public static int analisarLink(String link) {
-        int score=0;
-        if(!link.contains("https://")) {//aumenta score de perigo por tokens ausentes.
-            score += 40;
-        }
 
 }
