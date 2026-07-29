@@ -32,7 +32,7 @@ public class menu {
                     System.out.println("\nTexto recebido com sucesso.");
                     System.out.println("Texto Recebido: " + textoEmAnalise);
 
-                    int resultado = analisar.analisarEmail(textoEmAnalise);
+                    int resultado = Analisar.analisarEmail(textoEmAnalise);
 
                     System.out.println(resultado);
 

@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import Funcionalidade.analisar;
+import Funcionalidade.Analisar;
 
 public class TesteTeste{
     public static void main(String[] args){
@@ -7,7 +7,7 @@ public class TesteTeste{
         System.out.println("Digite o conteudo do Email");
         String texto = leia.nextLine();
 
-        int resultado = analisar.analisarEmail(texto);
+        int resultado = Analisar.analisarEmail(texto);
 
         System.out.println(resultado);
     }
