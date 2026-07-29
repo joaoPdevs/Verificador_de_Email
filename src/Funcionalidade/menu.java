@@ -8,12 +8,13 @@ public class menu {
     public static void ExibirMenu() {
         Scanner leia = new Scanner(System.in, StandardCharsets.UTF_8);
         int opcao = -1;
+        String opcaolink = ""; //declaramos a opção link como vazia para comparar depois.
 
         while (opcao != 2) {
-            System.out.println("\n=== Verificador de E-mail ===");
-            System.out.println("1. Inserir um e-mail para ser analisado");
-            System.out.println("2. Inserir um link para ser analisado");
-            System.out.println("3. Encerrar Programa");
+            System.out.println("\n=== Verificador de Mensagens ===");
+            System.out.println("1. Insira uma mensagem para ser analisado: ");
+//            System.out.println("2. Inserir um link para ser analisado");
+            System.out.println("2. Encerrar Programa");
             System.out.print("Opção: ");
 
             
@@ -35,19 +36,44 @@ public class menu {
 
                     int resultado = Analisar.analisarEmail(textoEmAnalise);
 
-                    System.out.println(resultado);
+                    System.out.println("Score de perigo da mensagem: " + resultado); //exibir resultado atual do score
 
-                    break;
+
+                    while (!opcaolink.equals("N")){ //Loop de interface para adicionar um número indefinido de links.)
+                        System.out.println("Deseja analisar um link presente na mensagem? (Y/N)");//começar a analise dos links
+
+                        switch (leia.nextLine()) {
+                            case "Y":
+                            case "y":
+                                opcaolink = "Y";
+                                System.out.println("Digite o link a ser analisado: ");
+                                String linkEmAnlise = leia.nextLine();
+                                System.out.println("\nLink recebido com sucesso.");
+                                System.out.println("Texto Recebido: " + linkEmAnlise);
+
+                                resultado = Analisar.analisarLink(linkEmAnlise) + resultado;
+                                System.out.println("O score atual de perigo da sua mensagem é: " + resultado);
+
+                                break;
+                            case "N":
+                            case "n":
+                                opcaolink = "N";
+                                System.out.println("O score final de perigo da sua mensagem é: " + resultado + ", sendo classificada como " + ExibirGrau.DefinirGrau(resultado));
+                                resultado = 0;
+
+                                break;
+
+                            default:
+                                opcaolink = "-1";
+                                System.out.println("Opção Inválida. Tente novamente.\n");
+                                break;
+                        }
+                    }
+
+                    break; // Fim do filtro e cálculo de perigo
+
+
                 case 2:
-                    System.out.println("Digite o link a ser analisado: ");
-                    String linkEmAnlise = leia.nextLine();
-                    System.out.println("\nLink recebido com sucesso.");
-                    System.out.println("Texto Recebido: " + linkEmAnlise);
-
-                    int resultadoLink = Analisar.analisarLink(linkEmAnlise);
-                    System.out.println(resultadoLink);
-
-                case 3:
                     System.out.println("\nEncerrando o programa...");
                     break;
 
