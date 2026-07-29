@@ -1,6 +1,5 @@
 package Funcionalidade;
 
-import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
