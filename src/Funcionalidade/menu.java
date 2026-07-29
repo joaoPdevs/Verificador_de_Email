@@ -1,11 +1,12 @@
 package Funcionalidade;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class menu {
 
     // Metodo para exibir o menu e receber a opção do usuário
     public static void ExibirMenu() {
-        Scanner leia = new Scanner(System.in);
+        Scanner leia = new Scanner(System.in, StandardCharsets.UTF_8);
         int opcao = -1;
         String opcaolink = ""; //declaramos a opção link como vazia para comparar depois.
 
