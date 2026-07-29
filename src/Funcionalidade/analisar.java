@@ -1,7 +1,9 @@
 package Funcionalidade;
 
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class Analisar {
     public static int analisarEmail(String assunto){
@@ -51,5 +53,30 @@ public class Analisar {
 
         return score;
     }
+
+
+     public static int analisarLink(String link) {
+    int score = 0;
+
+    if (link == null || link.isBlank()) {
+        return 100;
+    }
+
+    link = link.toLowerCase();
+
+    if (!link.startsWith("https://")) {
+        score += 40;
+    }
+
+    if (link.contains("@")) {
+        score += 20;
+    }
+
+    if (link.length() > 100) {
+        score += 10;
+    }
+
+    return score;
+}
 
 }
