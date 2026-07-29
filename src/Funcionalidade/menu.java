@@ -11,20 +11,20 @@ public class menu {
         while (opcao != 2) {
             System.out.println("\n=== Verificador de E-mail ===");
             System.out.println("1. Inserir um e-mail para ser analisado");
-            System.out.println("2. Encerrar Programa");
+            System.out.println("2. Inserir um link para ser analisado");
+            System.out.println("3. Encerrar Programa");
             System.out.print("Opção: ");
 
-            // Valida se foi digitado um número inteiro
+            
             if (leia.hasNextInt()) {
                 opcao = leia.nextInt();
-                leia.nextLine(); // Limpa o "Enter" pendente
+                leia.nextLine();
             } else {
                 System.out.println("\nOpção Inválida. Insira apenas números inteiros.");
-                leia.nextLine(); // Descarta a entrada inválida
+                leia.nextLine();
                 continue;
             }
 
-            // Direciona a ação da opção
             switch (opcao) {
                 case 1:
                     System.out.print("Digite o texto a ser analisado: ");
@@ -37,8 +37,16 @@ public class menu {
                     System.out.println(resultado);
 
                     break;
-
                 case 2:
+                    System.out.println("Digite o link a ser analisado: ");
+                    String linkEmAnlise = leia.nextLine();
+                    System.out.println("\nLink recebido com sucesso.");
+                    System.out.println("Texto Recebido: " + linkEmAnlise);
+
+                    int resultadoLink = Analisar.analisarLink(linkEmAnlise);
+                    System.out.println(resultadoLink);
+
+                case 3:
                     System.out.println("\nEncerrando o programa...");
                     break;
 
