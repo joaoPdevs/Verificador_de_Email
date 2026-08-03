@@ -2,15 +2,11 @@ package Funcionalidade;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.HashSet;
 
 public class Analisar {
 
     public static int analisarEmail(String assunto) {
-
-        // Regra obrigatória da empresa
-        if (!validarFormatoEmail(assunto)) {
-            return -1; // E-mail inválido
-        }
 
         int score = 0;
 
@@ -67,9 +63,9 @@ public class Analisar {
 
         texto = texto.toLowerCase();
 
-        boolean possuiIdentificacao = texto.contains("nome:");
-        boolean possuiSetor = texto.contains("setor:");
-        boolean possuiMotivo = texto.contains("motivo:");
+        boolean possuiIdentificacao = texto.contains("nome");
+        boolean possuiSetor = texto.contains("setor");
+        boolean possuiMotivo = texto.contains("motivo");
 
         return possuiIdentificacao && possuiSetor && possuiMotivo;
     }
@@ -98,5 +94,32 @@ public class Analisar {
         }
 
         return score;
+    }
+
+    public static boolean validarDominio(String dominio){
+        
+        boolean verfica_dominio = false;
+
+        HashSet<String> dominios_oficiais = new HashSet<>();
+
+        dominios_oficiais.add("@gmail.com");
+        dominios_oficiais.add("@hotmail.com");
+        dominios_oficiais.add("@outlook.com");
+        dominios_oficiais.add("@yahoo.com");
+        dominios_oficiais.add("@empresa.com.br");
+        dominios_oficiais.add("@universidade.edu.br");
+        dominios_oficiais.add("@gov.br");
+        dominios_oficiais.add("@mamaecorreios.com.br");
+
+        dominio = dominio.toLowerCase();
+
+        for (String dominioOficial : dominios_oficiais) {
+            if (dominio.contains(dominioOficial)) {
+                verfica_dominio = true;
+                break;
+            }
+
+        }
+        return verfica_dominio;
     }
 }
