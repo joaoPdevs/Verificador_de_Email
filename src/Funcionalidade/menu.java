@@ -4,7 +4,24 @@ import java.util.Scanner;
 
 public class menu {
 
-    // Metodo para exibir o menu e receber a opção do usuário
+    private static String lerMensagem(Scanner leia) {
+    StringBuilder mensagem = new StringBuilder();
+
+    System.out.println("Digite o texto a ser analisado.");
+    System.out.println("Quando terminar, digite FIM em uma nova linha:");
+
+    while (true) {
+        String linha = leia.nextLine();
+
+        if (linha.equalsIgnoreCase("FIM")) {
+            break;
+        }
+
+        mensagem.append(linha).append("\n");
+    }
+
+    return mensagem.toString();
+}
     public static void ExibirMenu() {
         Scanner leia = new Scanner(System.in, StandardCharsets.UTF_8);
         int opcao = -1;
@@ -33,15 +50,12 @@ public class menu {
                     boolean dominio_valido = Analisar.validarDominio(dominio);
                     if(dominio_valido == true){
 
-                    System.out.print("Digite o texto a ser analisado: ");
-                    String textoEmAnalise = leia.nextLine();
+                    String textoEmAnalise = lerMensagem(leia);
                     System.out.println("\nTexto recebido com sucesso.");
                     System.out.println("Texto Recebido: " + textoEmAnalise);
                     boolean valido = Analisar.validarFormatoEmail(textoEmAnalise);
 
                     int resultado = Analisar.analisarEmail(textoEmAnalise);
-
-                    System.out.println("Score de perigo da mensagem: " + resultado);
 
 
                     while (!opcaolink.equals("N")){
