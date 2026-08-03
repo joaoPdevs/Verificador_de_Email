@@ -10,10 +10,6 @@ public class menu {
         int opcao = -1;
         String opcaolink = "";
 
-        System.out.print("Digite o domínio que enviou a mensagem:\n ");
-        String dominio = leia.nextLine();
-        boolean dominio_valido = Analisar.validarDominio(dominio);
-        if(dominio_valido == true){
         while (opcao != 2) {
             System.out.println("\n\n=== Verificador de Mensagens ===");
             System.out.println("1. Insira uma mensagem para ser analisado: ");
@@ -32,6 +28,11 @@ public class menu {
 
             switch (opcao) {
                 case 1:
+                    System.out.print("Digite o domínio que enviou a mensagem:\n ");
+                    String dominio = leia.nextLine();
+                    boolean dominio_valido = Analisar.validarDominio(dominio);
+                    if(dominio_valido == true){
+
                     System.out.print("Digite o texto a ser analisado: ");
                     String textoEmAnalise = leia.nextLine();
                     System.out.println("\nTexto recebido com sucesso.");
@@ -76,6 +77,12 @@ public class menu {
                     }
                     opcaolink = "";
                     break;
+                }
+
+                else{
+                    System.out.println("\nO domínio informado não é um domínio conhecido.\nVerifique se você inseriu o domínio corretamente. Caso contrário, entre em contato com seu supervisor antes de tomar qualquer medida.");    
+                    break;    
+                }
 
 
                 case 2:
@@ -87,10 +94,7 @@ public class menu {
                     break;
             }
         }
-    }
-    else{
-        System.out.println("\nO domínio informado não é um domínio conhecido.\nVerifique se você inseriu o domínio corretamente. Caso contrário, entre em contato com seu supervisor antes de tomar qualquer medida.");    
-        }
         leia.close();
     }
+    
 }
