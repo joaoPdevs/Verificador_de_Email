@@ -3,13 +3,19 @@ package Funcionalidade;
 import java.util.HashMap;
 import java.util.Map;
 
-
 public class Analisar {
-    public static int analisarEmail(String assunto){
-        int score=0;
+
+    public static int analisarEmail(String assunto) {
+
+        // Regra obrigatória da empresa
+        if (!validarFormatoEmail(assunto)) {
+            return -1; // E-mail inválido
+        }
+
+        int score = 0;
 
         HashMap<String, Integer> palavras_golpes = new HashMap<>();
-        
+
         palavras_golpes.put("pix", 38);
         palavras_golpes.put("urgente", 30);
         palavras_golpes.put("clique aqui", 35);
@@ -37,45 +43,60 @@ public class Analisar {
         palavras_golpes.put("oferta por tempo limitado", 25);
         palavras_golpes.put("aja agora", 30);
         palavras_golpes.put("não perca", 20);
-        
 
         assunto = assunto.toLowerCase();
 
         for (Map.Entry<String, Integer> entry : palavras_golpes.entrySet()) {
+
             String palavra = entry.getKey().toLowerCase();
             int peso = entry.getValue();
 
             if (assunto.contains(palavra)) {
                 score += peso;
             }
-        }     
+        }
 
         return score;
     }
 
+    public static boolean validarFormatoEmail(String texto) {
 
-     public static int analisarLink(String link) {
-    int score = 0;
+        if (texto == null || texto.isBlank()) {
+            return false;
+        }
 
-    if (link == null || link.isBlank()) {
-        return 100;
+        texto = texto.toLowerCase();
+
+        boolean possuiIdentificacao = texto.contains("nome:");
+        boolean possuiSetor = texto.contains("setor:");
+        boolean possuiMotivo = texto.contains("motivo:");
+
+        return possuiIdentificacao && possuiSetor && possuiMotivo;
     }
 
-    link = link.toLowerCase();
 
-    if (!link.startsWith("https://")) {
-        score += 40;
+    public static int analisarLink(String link) {
+
+        int score = 0;
+
+        if (link == null || link.isBlank()) {
+            return 100;
+        }
+
+        link = link.toLowerCase();
+
+        if (!link.startsWith("https://")) {
+            score += 40;
+        }
+
+        if (link.contains("@")) {
+            score += 20;
+        }
+
+        if (link.length() > 100) {
+            score += 10;
+        }
+
+        return score;
     }
-
-    if (link.contains("@")) {
-        score += 20;
-    }
-
-    if (link.length() > 100) {
-        score += 10;
-    }
-
-    return score;
-}
-
 }

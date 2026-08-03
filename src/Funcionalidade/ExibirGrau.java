@@ -1,13 +1,19 @@
 package Funcionalidade;
 
 public class ExibirGrau {
+
     public static String DefinirGrau(int score) {
+
         String grau;
+
+        if (score == -1) {
+            return "Mensagem não atende aos padrões da nossa empresa.";
+        }
 
         if(score >= 0 && score <= 30) {
             grau = "Provavelmente Legítima";
         }
-        else if(score > 30 && score < 100 ) {
+        else if(score > 30 && score < 100) {
             grau = "Suspeita";
         }
         else if(score >= 100) {

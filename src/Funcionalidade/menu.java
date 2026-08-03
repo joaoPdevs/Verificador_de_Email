@@ -8,12 +8,11 @@ public class menu {
     public static void ExibirMenu() {
         Scanner leia = new Scanner(System.in, StandardCharsets.UTF_8);
         int opcao = -1;
-        String opcaolink = ""; //declaramos a opção link como vazia para comparar depois.
+        String opcaolink = "";
 
         while (opcao != 2) {
             System.out.println("\n=== Verificador de Mensagens ===");
             System.out.println("1. Insira uma mensagem para ser analisado: ");
-//            System.out.println("2. Inserir um link para ser analisado");
             System.out.println("2. Encerrar Programa");
             System.out.print("Opção: ");
 
@@ -33,14 +32,16 @@ public class menu {
                     String textoEmAnalise = leia.nextLine();
                     System.out.println("\nTexto recebido com sucesso.");
                     System.out.println("Texto Recebido: " + textoEmAnalise);
+                    boolean valido = Analisar.validarFormatoEmail(textoEmAnalise);
 
+                    if(valido == true){
                     int resultado = Analisar.analisarEmail(textoEmAnalise);
 
-                    System.out.println("Score de perigo da mensagem: " + resultado); //exibir resultado atual do score
+                    System.out.println("Score de perigo da mensagem: " + resultado);
 
 
-                    while (!opcaolink.equals("N")){ //Loop de interface para adicionar um número indefinido de links.)
-                        System.out.println("Deseja analisar um link presente na mensagem? (Y/N)");//começar a analise dos links
+                    while (!opcaolink.equals("N")){
+                        System.out.println("Deseja analisar um link presente na mensagem? (Y/N)");
 
                         switch (leia.nextLine()) {
                             case "Y":
@@ -70,8 +71,13 @@ public class menu {
                         }
                     }
 
-                    break; // Fim do filtro e cálculo de perigo
+                    break;
 
+                }
+                else{
+                    System.out.println("A mensagem não cumpre o formato de comunicação da empresa!");
+                    break;
+                }
 
                 case 2:
                     System.out.println("\nEncerrando o programa...");
