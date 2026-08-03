@@ -6,10 +6,6 @@ public class ExibirGrau {
 
         String grau;
 
-        if (score == -1) {
-            return "Mensagem não atende aos padrões da nossa empresa.";
-        }
-
         if(score >= 0 && score <= 30) {
             grau = "Provavelmente Legítima";
         }

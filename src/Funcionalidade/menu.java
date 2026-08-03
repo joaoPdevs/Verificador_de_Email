@@ -10,8 +10,12 @@ public class menu {
         int opcao = -1;
         String opcaolink = "";
 
+        System.out.print("Digite o domínio que enviou a mensagem:\n ");
+        String dominio = leia.nextLine();
+        boolean dominio_valido = Analisar.validarDominio(dominio);
+        if(dominio_valido == true){
         while (opcao != 2) {
-            System.out.println("\n=== Verificador de Mensagens ===");
+            System.out.println("\n\n=== Verificador de Mensagens ===");
             System.out.println("1. Insira uma mensagem para ser analisado: ");
             System.out.println("2. Encerrar Programa");
             System.out.print("Opção: ");
@@ -34,7 +38,6 @@ public class menu {
                     System.out.println("Texto Recebido: " + textoEmAnalise);
                     boolean valido = Analisar.validarFormatoEmail(textoEmAnalise);
 
-                    if(valido == true){
                     int resultado = Analisar.analisarEmail(textoEmAnalise);
 
                     System.out.println("Score de perigo da mensagem: " + resultado);
@@ -53,15 +56,16 @@ public class menu {
                                 System.out.println("Texto Recebido: " + linkEmAnlise);
 
                                 resultado = Analisar.analisarLink(linkEmAnlise) + resultado;
-                                System.out.println("O score atual de perigo da sua mensagem é: " + resultado);
 
                                 break;
                             case "N":
                             case "n":
                                 opcaolink = "N";
-                                System.out.println("O score final de perigo da sua mensagem é: " + resultado + ", sendo classificada como " + ExibirGrau.DefinirGrau(resultado));
+                                System.out.println("Analisamos sua mensagem,e ela foi classificada como " + ExibirGrau.DefinirGrau(resultado));
                                 resultado = 0;
-
+                                if(valido == false){
+                                    System.out.println("\nAtenção!\nEssa mensagem não atende os padrões de comunicação da empresa(nome,setor e motivo).\nPor favor entre em contato com seu surpervisor antes de responder essa mensagem.");
+                                }
                                 break;
 
                             default:
@@ -70,14 +74,9 @@ public class menu {
                                 break;
                         }
                     }
-
+                    opcaolink = "";
                     break;
 
-                }
-                else{
-                    System.out.println("A mensagem não cumpre o formato de comunicação da empresa!");
-                    break;
-                }
 
                 case 2:
                     System.out.println("\nEncerrando o programa...");
@@ -87,6 +86,10 @@ public class menu {
                     System.out.println("\nOpção Inválida. Escolha 1 ou 2.");
                     break;
             }
+        }
+    }
+    else{
+        System.out.println("\nO domínio informado não é um domínio conhecido.\nVerifique se você inseriu o domínio corretamente. Caso contrário, entre em contato com seu supervisor antes de tomar qualquer medida.");    
         }
         leia.close();
     }
