@@ -67,7 +67,7 @@ public class Analisar {
 
         texto = texto.toLowerCase();
 
-        boolean possuiIdentificacao = texto.contains("identificação:");
+        boolean possuiIdentificacao = texto.contains("nome:");
         boolean possuiSetor = texto.contains("setor:");
         boolean possuiMotivo = texto.contains("motivo:");
 
