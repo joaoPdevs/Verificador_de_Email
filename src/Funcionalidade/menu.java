@@ -76,10 +76,12 @@ public class menu {
                             case "N":
                             case "n":
                                 opcaolink = "N";
-                                System.out.println("Analisamos sua mensagem,e ela foi classificada como " + ExibirGrau.DefinirGrau(resultado));
-                                resultado = 0;
                                 if(valido == false){
                                     System.out.println("\nAtenção!\nEssa mensagem não atende os padrões de comunicação da empresa(nome,setor e motivo).\nPor favor entre em contato com seu surpervisor antes de responder essa mensagem.");
+                                }
+                                else{
+                                    System.out.println("Analisamos sua mensagem,e ela foi classificada como " + ExibirGrau.DefinirGrau(resultado));
+                                    resultado = 0;
                                 }
                                 break;
 
